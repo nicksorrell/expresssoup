@@ -1,0 +1,26 @@
+html {
+  font-size: 16px;
+  font-family: sans-serif;
+}
+
+body {
+  background: #ccc;
+}
+
+h1 {
+  color: #fff;
+}
+
+ul {
+  list-style-type: none;
+}
+
+ul li {
+  background: #fff;
+  padding: 15px;
+}
+
+.container {
+  width: 960px;
+  margin: 50px auto;
+}
