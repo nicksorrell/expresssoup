@@ -9,7 +9,7 @@ body {
   padding-top: 80px;
 }
 
-h1 {
+h1, h2 {
   color: #fff;
 }
 
@@ -22,6 +22,10 @@ ul li {
 form {
   background: #fff;
   padding:30px;
+}
+
+.alert {
+  display: none;
 }
 
 .city-list img {

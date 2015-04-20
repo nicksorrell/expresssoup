@@ -61,10 +61,16 @@ describe('Creating new cities', function(){
       .send('name=Springfield&desc=Where+the+simpsons+live')
         .expect(/springfield/i, done);
   });
+
+  it('Returns a validation error if a field is blank', function(done){
+    request(app)
+      .post('/cities')
+      .send('name=&desc=')
+        .expect(400, done);
+  });
 });
 
 describe('Deleting cities', function(){
-
   before(function(){
     client.hset('cities', 'Testcity', 'This is a test city');
   });

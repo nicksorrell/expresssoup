@@ -21,10 +21,15 @@ $(function(){
 
     $.ajax({
       type: 'POST', url: '/cities', data: cityData
-    }).done(function(cityName){
-      appendToList([cityName]);
-      form.trigger('reset');
-    });
+    })
+      .error(function(){
+        $('.alert').show();
+      })
+      .success(function(cityName){
+        appendToList([cityName]);
+        $('.alert').hide();
+        form.trigger('reset');
+      });
   });
 
   $('.city-list').on('click', 'a[data-city]', function(e){
