@@ -3,6 +3,8 @@
 var express = require('express');
 var app = express();
 
+app.use(express.static('public'));
+
 var bodyParser = require('body-parser');
 var urlencoded = bodyParser.urlencoded({ extended: false });
 
@@ -19,8 +21,6 @@ if(process.env.REDISTOGO_URL){
 }
 //END OF Redis Connection
 
-app.use(express.static('public'));
-
 app.get('/', function(req, res){
   res.send('Hello world!');
 });
@@ -30,7 +30,13 @@ app.get('/cities', function(req, res){
     if(error) throw error;
     res.json(names);
   });
+});
 
+app.get('/cities/:name', function(req, res){
+  client.hget('cities', req.params.name, function(error, desc){
+    res.render('show.ejs',
+      { city: { name: req.params.name, desc: desc}});
+  });
 });
 
 app.post('/cities', urlencoded, function(req, res){

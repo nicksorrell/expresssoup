@@ -72,7 +72,7 @@ describe('Creating new cities', function(){
 
 describe('Deleting cities', function(){
   before(function(){
-    client.hset('cities', 'Testcity', 'This is a test city');
+    client.hset('cities', 'Testville', 'This is a test city');
   });
 
   after(function(){
@@ -83,5 +83,33 @@ describe('Deleting cities', function(){
     request(app)
       .delete('/cities/Testcity')
         .expect(204, done);
+  });
+});
+
+describe('Show city info', function(){
+  before(function(){
+    client.hset('cities', 'Testville', 'This is a test city');
+  });
+
+  after(function(){
+    client.flushdb();
+  });
+
+  it('Returns 200 status code', function(done){
+    request(app)
+      .get('/cities/Testville')
+        .expect(200, done);
+  });
+
+  it('Returns HTML format', function(done){
+    request(app)
+      .get('/cities/Testville')
+        .expect('Content-Type', /html/, done);
+  });
+
+  it('Returns the city information', function(done){
+    request(app)
+      .get('/cities/Testville')
+        .expect(/test/, done);
   });
 });
