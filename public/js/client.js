@@ -8,7 +8,7 @@ $(function(){
     var content, city;
     for(var i in cities) {
       city = cities[i];
-      content = '<a href="/cities/' + city + '">' + city + '</a>' + '<a href="#" data-city="' + city + '"><img src="img/del.png"></a>';
+      content = '<a href="#" data-city="' + city + '"><img src="img/del.png"></a>' + '<a href="/cities/' + city + '">' + city + '</a>';
       list.push($('<li>', { html: content }));
     }
     $('.city-list').append(list);
