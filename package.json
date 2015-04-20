@@ -4,8 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "node bin/www",
-    "test": "mocha test.js"
+    "start": "SET NODE_ENV=development& node bin/www",
+    "test": "set NODE_ENV=test& mocha -w app.js test.js"
   },
   "author": "",
   "license": "ISC",
