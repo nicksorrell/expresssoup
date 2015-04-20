@@ -60,5 +60,22 @@ describe('Creating new cities', function(){
       .post('/cities')
       .send('name=Springfield&desc=Where+the+simpsons+live')
         .expect(/springfield/i, done);
-  })
+  });
+});
+
+describe('Deleting cities', function(){
+
+  before(function(){
+    client.hset('cities', 'Testcity', 'This is a test city');
+  });
+
+  after(function(){
+    client.flushdb();
+  });
+
+  it('Returns a 204 status code', function(done){
+    request(app)
+      .delete('/cities/Testcity')
+        .expect(204, done);
+  });
 });
