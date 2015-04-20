@@ -22,7 +22,7 @@ $(function(){
     $.ajax({
       type: 'POST', url: '/cities', data: cityData
     }).done(function(cityName){
-      appendToList([cityName.toLowerCase()]);
+      appendToList([cityName]);
       form.trigger('reset');
     });
   });
